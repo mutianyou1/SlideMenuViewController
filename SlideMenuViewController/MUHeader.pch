@@ -1,0 +1,18 @@
+//
+//  MUHeader.pch
+//  SlideMenuViewController
+//
+//  Created by 潘元荣(外包) on 16/8/25.
+//  Copyright © 2016年 潘元荣(外包). All rights reserved.
+//
+
+#ifndef MUHeader_pch
+#define MUHeader_pch
+#define KWidth   [UIScreen mainScreen].bounds.size.width
+#define KHeight   [UIScreen mainScreen].bounds.size.height
+
+#import "MUSlideMenuManager.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* MUHeader_pch */
