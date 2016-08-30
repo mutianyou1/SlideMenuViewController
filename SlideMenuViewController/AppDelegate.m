@@ -31,7 +31,7 @@
     [tab setViewControllers:@[vc1,vc2]];
     [[MUSlideMenuManager manager] setMiddleViewController:tab backGroundImageWithName:nil];
     [[MUSlideMenuManager manager] setRigthViewController:[RightViewController new] rightMargin:KWidth*0.7];
-    [[MUSlideMenuManager manager] setLeftViewController:[LeftViewController new] leftMargin:KWidth*0.4];
+    [[MUSlideMenuManager manager] setLeftViewController:[LeftViewController new] leftMargin:KWidth*0.3];
     
     return YES;
 }

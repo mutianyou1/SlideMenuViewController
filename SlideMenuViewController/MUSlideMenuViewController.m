@@ -72,20 +72,30 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark gesture method
 - (void)panMoveToSliderMenu:(UIPanGestureRecognizer*)pan{
    CGPoint point = [pan locationInView:self.view];
+   CGPoint translation = [pan translationInView:self.view];
     
     if (pan.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"start");
          _beginPoint = point;
     }else if (pan.state == UIGestureRecognizerStateEnded){
         if (point.x - _beginPoint.x > 0.0) {
-            NSLog(@"left move");
+            //NSLog(@"left move");
             self.currentSlideType = MUSlideTypeLeft;
         }else if (point.x - _beginPoint.x < -0.0){
-            NSLog(@"right move");
+            //NSLog(@"right move");
             self.currentSlideType = MUSlideTypeRight;
         }
         [self transitionToTargetView];
+    }else if (pan.state == UIGestureRecognizerStateChanged){
+        if (translation.x < 0 ) {
+            self.currentSlideType = MUSlideTypeRight;
+        }else if (translation.x > 0){
+            self.currentSlideType = MUSlideTypeLeft;
+        }
+        [self moveViewWhenPanning:-translation.x];
     }
 }
 - (void)centerViewPanMoveToOriginalView:(UIPanGestureRecognizer*)pan{
@@ -114,10 +124,19 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
     }
     
 }
+- (void)tapMoveToCenter:(UITapGestureRecognizer*)tap{
+    
+    [self moveToCenterView];
+    
+}
+#pragma mark ViewAnimation
 - (void)transitionToTargetView {
     CGAffineTransform mainTransform = CGAffineTransformMake(0.8, 0, 0, 0.8,-0.8*KWidth-self.rightMargin + KWidth, 0);
+    CGAffineTransform mainScaleTransform = CGAffineTransformMakeScale(0.8, 0.8);
+    CGRect mainRect = [UIScreen mainScreen].bounds;
     UIView *targetView = self.rightViewController.view;
     UIView *middleView = self.middleViewController.view;
+    UIView *otherSideView = self.leftViewController.view;
     UIViewController *targetViewController = self.rightViewController;
     CGRect rect = CGRectMake(KWidth - _rightMargin, 0, KWidth, KHeight);
     switch (self.currentSlideType) {
@@ -129,15 +148,18 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
             targetView = self.leftViewController.view;
             rect.origin.x =  -self.leftMargin;
             targetViewController = self.leftViewController;
+            otherSideView = self.rightViewController.view;
+            otherSideView.frame = CGRectMake(KWidth, 0, KWidth, KHeight);
             break;
         case MUSlideTypeRight:
-            
+            otherSideView.frame = CGRectMake(-KWidth, 0, KWidth, KHeight);
         default:
             break;
     }
-    [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:30.0 initialSpringVelocity:6.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:30.0 initialSpringVelocity:6.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         middleView.layer.cornerRadius = 10.0;
-        middleView.transform = mainTransform;
+        middleView.frame = mainRect;
+        middleView.transform = mainScaleTransform;
         targetView.frame = rect;
         
     } completion:^(BOOL finished) {
@@ -154,9 +176,31 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
     
 
 }
-- (void)tapMoveToCenter:(UITapGestureRecognizer*)tap{
+- (void)moveViewWhenPanning:(CGFloat)margin{
+
+    UIView *targetView = self.rightViewController.view;
+    UIView *middleView = self.middleViewController.view;
     
-    [self moveToCenterView];
+
+    CGRect middleViewRect = middleView.frame;
+    middleViewRect.origin.x = -margin;
+    CGRect rect = CGRectMake(KWidth - margin, 0, KWidth, KHeight);
+    switch (self.currentSlideType) {
+        case MUSlideTypeCenter:
+            
+            break;
+        case MUSlideTypeLeft:
+            middleViewRect.origin.x -= margin;
+            targetView = self.leftViewController.view;
+            rect = CGRectMake(middleViewRect.origin.x-KWidth, 0, KWidth, KHeight);
+            break;
+        case MUSlideTypeRight:
+            
+        default:
+            break;
+    }
+        targetView.frame = rect;
+        middleView.frame = middleViewRect;
     
 }
 - (void)moveToCenterView{

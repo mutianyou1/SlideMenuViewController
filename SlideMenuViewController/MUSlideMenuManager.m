@@ -43,8 +43,9 @@
 - (void)setLeftViewController:(UIViewController *)viewController leftMargin:(float)leftMargin{
     self.mainViewController.leftMargin = leftMargin;
     
-    self.mainViewController.leftViewController = viewController;
     viewController.view.frame = CGRectMake(-KWidth, 0, KWidth, KHeight);
+    self.mainViewController.leftViewController = viewController;
+    
     [self.mainViewController addChildViewController:viewController];
     [self.mainViewController.view addSubview:viewController.view];
 
