@@ -89,7 +89,7 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
     }
 }
 - (void)centerViewPanMoveToOriginalView:(UIPanGestureRecognizer*)pan{
-    CGPoint point = [pan locationInView:self.coverView];
+    CGPoint point = [pan locationInView:self.view];
     if (pan.state == UIGestureRecognizerStateBegan) {
         _beginPoint = point;
     }else if(pan.state == UIGestureRecognizerStateEnded){
@@ -98,6 +98,7 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
                 
                 break;
             case MUSlideTypeLeft:
+                
                 if (point.x - _beginPoint.x < 0) {
                     [self moveToCenterView];
                 }
@@ -143,10 +144,10 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
         [self.view removeGestureRecognizer:self.pan];
         self.pan.delegate = nil;
         self.coverView.transform = mainTransform;
-        
+
         [self.view addSubview:self.coverView];
-        [self.view bringSubviewToFront:targetView];
         [self.coverView addGestureRecognizer:self.tap];
+        [self.view bringSubviewToFront:targetView];
         [targetView addGestureRecognizer:self.centerPan];
         [targetViewController didMoveToParentViewController:self];
     }];
@@ -183,8 +184,6 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
     } completion:^(BOOL finished) {
         [self.coverView removeFromSuperview];
         [self.coverView removeGestureRecognizer:self.tap];
-        [self.coverView removeGestureRecognizer:self.centerPan];
-        self.tap.delegate = nil;
         [targetView removeGestureRecognizer:self.centerPan];
         [self.view addGestureRecognizer:self.pan];
         [self.middleViewController didMoveToParentViewController:self];
