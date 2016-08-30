@@ -26,7 +26,7 @@
     for (int i = 0; i < 3; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(KWidth*0.5 - 60, 120+i*60, 120, 40);
-        button.backgroundColor = [UIColor darkGrayColor];
+        button.backgroundColor = kRedSkyColor;
         button.titleLabel.text = [NSString stringWithFormat:@"title%d",i+1];
         [button setTitle:[NSString stringWithFormat:@"title%d",i+1] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:18];
