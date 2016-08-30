@@ -19,5 +19,8 @@
 - (void)setMiddleViewController:(UIViewController*)middleController backGroundImageWithName:(NSString*)imageName;
 - (void)setRigthViewController:(UIViewController*)viewController rightMargin:(float)rightMargin;
 - (void)addSlideViewContollerOnWindow;
+
 - (void)changeBackgroundModel:(NSString*)model;
+- (void)presentViewController:(UIViewController*)viewController animated:(BOOL)animated;
+
 @end

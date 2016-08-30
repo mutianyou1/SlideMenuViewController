@@ -20,6 +20,7 @@
 		D2AA7F4A1D6EF02600DBCA0C /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA7F491D6EF02600DBCA0C /* LeftViewController.m */; };
 		D2AA7F4D1D6EF03400DBCA0C /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA7F4C1D6EF03400DBCA0C /* RightViewController.m */; };
 		D2AA7F531D6EF1F300DBCA0C /* MUSlideMenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AA7F521D6EF1F300DBCA0C /* MUSlideMenuManager.m */; };
+		D2C1AD971D75321800185AC2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C1AD961D75321800185AC2 /* SettingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		D2AA7F4F1D6EF09300DBCA0C /* MUHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MUHeader.pch; sourceTree = "<group>"; };
 		D2AA7F511D6EF1F300DBCA0C /* MUSlideMenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUSlideMenuManager.h; sourceTree = "<group>"; };
 		D2AA7F521D6EF1F300DBCA0C /* MUSlideMenuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUSlideMenuManager.m; sourceTree = "<group>"; };
+		D2C1AD951D75321800185AC2 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		D2C1AD961D75321800185AC2 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,8 @@
 				D2AA7F181D6EEFA200DBCA0C /* ViewController.m */,
 				D2443C921D6FF02C00B79F60 /* SubViewController.h */,
 				D2443C931D6FF02C00B79F60 /* SubViewController.m */,
+				D2C1AD951D75321800185AC2 /* SettingViewController.h */,
+				D2C1AD961D75321800185AC2 /* SettingViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 				D2AA7F531D6EF1F300DBCA0C /* MUSlideMenuManager.m in Sources */,
 				D2AA7F471D6EEFE100DBCA0C /* MUSlideMenuViewController.m in Sources */,
 				D2AA7F161D6EEFA200DBCA0C /* AppDelegate.m in Sources */,
+				D2C1AD971D75321800185AC2 /* SettingViewController.m in Sources */,
 				D2AA7F131D6EEFA200DBCA0C /* main.m in Sources */,
 				D2AA7F4D1D6EF03400DBCA0C /* RightViewController.m in Sources */,
 				D2443C941D6FF02C00B79F60 /* SubViewController.m in Sources */,

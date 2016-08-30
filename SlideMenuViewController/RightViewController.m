@@ -7,7 +7,7 @@
 //
 
 #import "RightViewController.h"
-
+#import "SettingViewController.h"
 @interface RightViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong)UIScrollView *photoScrollView;
 @end
@@ -26,17 +26,28 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = kSkyColor;
     [self.view addSubview:self.photoScrollView];
     [self addPhotos];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.frame = CGRectMake(100*KWidthScale - 60, 40+100*KHeightScale, 120, 30);
+    [button setTitle:@"设置页面" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(clickPresentViewController) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
 }
 
 - (void)addPhotos{
+    NSArray *colors = @[[UIColor redColor],[UIColor greenColor],[UIColor purpleColor],[UIColor blueColor]];
     for (int i = 0; i < 4; i++) {
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(i*200*KWidthScale, 0, 200*KWidthScale, 100*KHeightScale)];
-        view.backgroundColor = [UIColor colorWithRed:(i+1)*40/255.0 green:30.0/255.0 blue:60.0/255.0 alpha:1];
+        view.backgroundColor = colors[i];
         [self.photoScrollView addSubview:view];
     }
+}
+- (void)clickPresentViewController{
+    UIViewController *vc = [[SettingViewController alloc]init];
+    [[MUSlideMenuManager manager] presentViewController:vc animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

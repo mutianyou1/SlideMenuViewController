@@ -39,9 +39,7 @@
     }
     return manager;
 }
-- (void)changeBackgroundModel:(NSString *)model{
-    [self.mainViewController changeBackgroundModel:model];
-}
+
 - (void)setLeftViewController:(UIViewController *)viewController leftMargin:(float)leftMargin{
     self.mainViewController.leftMargin = leftMargin;
     
@@ -77,9 +75,11 @@
     delegate.window.rootViewController = self.mainViewController;
 }
 
-- (void)slideToLeftViewController{
-    
+
+- (void)changeBackgroundModel:(NSString *)model{
+    [self.mainViewController changeBackgroundModel:model];
 }
-
-
+- (void)presentViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    [self.mainViewController presentViewController:viewController animated:animated completion:nil];
+}
 @end
