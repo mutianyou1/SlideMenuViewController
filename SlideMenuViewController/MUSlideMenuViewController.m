@@ -131,7 +131,6 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
 }
 #pragma mark ViewAnimation
 - (void)transitionToTargetView {
-    CGAffineTransform mainTransform = CGAffineTransformMake(0.8, 0, 0, 0.8,-0.8*KWidth-self.rightMargin + KWidth, 0);
     CGAffineTransform mainScaleTransform = CGAffineTransformMakeScale(0.8, 0.8);
     CGRect mainRect = [UIScreen mainScreen].bounds;
     UIView *targetView = self.rightViewController.view;
@@ -144,7 +143,6 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
             
             break;
         case MUSlideTypeLeft:
-            mainTransform = CGAffineTransformMake(0.8, 0, 0, 0.8,0, 0);
             targetView = self.leftViewController.view;
             rect.origin.x =  -self.leftMargin;
             targetViewController = self.leftViewController;
@@ -165,13 +163,12 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
     } completion:^(BOOL finished) {
         [self.view removeGestureRecognizer:self.pan];
         self.pan.delegate = nil;
-        self.coverView.transform = mainTransform;
+        self.coverView.transform = mainScaleTransform;
 
         [self.view addSubview:self.coverView];
         [self.coverView addGestureRecognizer:self.tap];
         [self.view bringSubviewToFront:targetView];
         [targetView addGestureRecognizer:self.centerPan];
-        [targetViewController didMoveToParentViewController:self];
     }];
     
 
@@ -230,7 +227,6 @@ typedef NS_ENUM(NSInteger, MUSlideType) {
         [self.coverView removeGestureRecognizer:self.tap];
         [targetView removeGestureRecognizer:self.centerPan];
         [self.view addGestureRecognizer:self.pan];
-        [self.middleViewController didMoveToParentViewController:self];
     }];
 }
 /*

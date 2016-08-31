@@ -48,6 +48,7 @@
     
     [self.mainViewController addChildViewController:viewController];
     [self.mainViewController.view addSubview:viewController.view];
+    [viewController didMoveToParentViewController:self.mainViewController];
 
 }
 
@@ -66,7 +67,7 @@
    
     [self.mainViewController addChildViewController:viewController];
     [self.mainViewController.view addSubview:viewController.view];
-    
+    [viewController didMoveToParentViewController:self.mainViewController];
 
     
 }
